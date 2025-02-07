@@ -1,0 +1,250 @@
+.attendance-container {
+  padding: 24px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+mat-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a202c;
+  padding: 16px 0;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.filter-section,
+.date-section,
+.meeting-section,
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.date-range-form {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.date-range-form mat-form-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.action-button {
+  height: 48px;
+  font-weight: 500;
+  margin: 20px;
+}
+
+.meeting-id-field {
+  width: 100%;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.table-container {
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+
+.table-scroll {
+  overflow-x: auto;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+table {
+  width: 100%;
+  min-width: max-content;  /* Ensures table doesn't shrink below content size */
+}
+
+.attendance-table {
+  width: 100%;
+}
+
+/* Fixed Columns Styling */
+.mat-column-name {
+  padding-left: 16px;
+  border-right: 1px solid #e0e0e0;
+  min-width: 200px;  /* Adjust based on your needs */
+  background-color: white;
+}
+
+.mat-column-attendancePercentage {
+  min-width: 120px;  /* Adjust based on your needs */
+  border-left: 1px solid #e0e0e0;
+  background-color: white;
+}
+
+/* Date Columns */
+th.mat-header-cell:not(.mat-column-name):not(.mat-column-attendancePercentage),
+td.mat-cell:not(.mat-column-name):not(.mat-column-attendancePercentage) {
+  min-width: 100px;  /* Adjust based on your needs */
+  padding: 0 16px;
+}
+
+/* Make sure sticky columns stay on top */
+.mat-column-name, .mat-column-attendancePercentage {
+  z-index: 1;
+}
+
+th.mat-header-cell {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  padding: 16px;
+  white-space: nowrap;
+}
+
+td.mat-cell {
+  padding: 16px;
+  color: #1a202c;
+}
+
+.present {
+  color: #059669;
+  font-weight: 500;
+}
+
+.absent {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.high-attendance {
+  color: #059669;
+  font-weight: 600;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.no-data-message {
+  padding: 24px;
+  text-align: center;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .attendance-container {
+    padding: 16px;
+  }
+  
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .date-range-form {
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+/* Hover effects */
+tr.mat-row:hover {
+  background-color: #f8fafc;
+}
+
+/* Sticky header styling */
+.mat-header-row {
+  background-color: #fafafa;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s;
+}
+
+/* Animation for loading spinner */
+.loading-spinner {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin: 0px 0;
+}
+
+.action-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.button-group button {
+  height: 45px;  /* Match the height of other form fields */
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}

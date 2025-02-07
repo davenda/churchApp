@@ -1,0 +1,79 @@
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f5f5f5;
+  }
+
+  .thank-you-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  mat-card-title {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+  }
+
+  .greeting {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  mat-card-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .divider {
+    margin: 2rem 0;
+  }
+
+  .social-section, .donation-section {
+    margin: 1.5rem 0;
+  }
+
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .social-links, .donation-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  button, a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  mat-icon {
+    margin-right: 4px;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .thank-you-container {
+      padding: 1rem;
+    }
+
+    .social-links, .donation-buttons {
+      flex-direction: column;
+    }
+
+    button, a {
+      width: 100%;
+      justify-content: center;
+    }
+  }

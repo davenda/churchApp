@@ -1,0 +1,40 @@
+<div class="nav-header">
+  <div class="brand">BeteYared Bible Study</div>
+  <div class="nav-links">
+    <a mat-button routerLink="/">
+      <mat-icon>app_registration</mat-icon>
+      Register
+    </a>
+    
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <a mat-button routerLink="/users">
+        <mat-icon>people</mat-icon>
+        Users
+      </a>
+      <a mat-button routerLink="/attendance">
+        <mat-icon>fact_check</mat-icon>
+        Attendance
+      </a>
+      <a mat-button routerLink="/schedule-meeting">
+        <mat-icon>schedule</mat-icon>
+        Meeting
+      </a>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a mat-button routerLink="/donate">
+        <mat-icon>volunteer_activism</mat-icon>
+        Donate
+      </a>
+      <a mat-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Login
+      </a>
+    </ng-container>
+  </div>
+</div>
+<router-outlet></router-outlet>

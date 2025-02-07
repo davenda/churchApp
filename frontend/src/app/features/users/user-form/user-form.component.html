@@ -1,0 +1,124 @@
+<div class="page-container">
+  <!-- Title Section -->
+  <div class="page-header">
+    <h2>Edit User Details</h2>
+  </div>
+
+  <div class="form-container">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <!-- Personal Information Section -->
+        <div class="form-section">
+          <h3>Personal Information</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name <span class="amharic">/ ስም</span></mat-label>
+            <input matInput formControlName="firstName" placeholder="Enter first name">
+            <mat-error *ngIf="userForm.get('firstName')?.errors?.['required']">
+              First name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name <span class="amharic">/ የአባት ስም</span></mat-label>
+            <input matInput formControlName="lastName" placeholder="Enter last name">
+            <mat-error *ngIf="userForm.get('lastName')?.errors?.['required']">
+              Last name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Baptism Name <span class="amharic">/ የክርስትና ስም</span></mat-label>
+            <input matInput formControlName="baptismName" placeholder="Enter baptism name">
+            <mat-error *ngIf="userForm.get('baptismName')?.errors?.['required']">
+              Baptism name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="form-section">
+          <h3>Contact Information</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Email <span class="amharic">/ ኢሜይል</span></mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Enter email">
+            <mat-error *ngIf="userForm.get('email')?.errors?.['required']">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="userForm.get('email')?.errors?.['email']">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number <span class="amharic">/ ስልክ ቁጥር</span></mat-label>
+            <input matInput formControlName="phoneNumber" placeholder="Enter phone number">
+            <mat-error *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+              Phone number is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Location Information Section -->
+        <div class="form-section">
+          <h3>Location</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Country <span class="amharic">/ ሀገር</span></mat-label>
+            <input matInput formControlName="country" placeholder="Enter country">
+            <mat-error *ngIf="userForm.get('country')?.errors?.['required']">
+              Country is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>State <span class="amharic">/ ክፍለ ሀገር</span></mat-label>
+            <input matInput formControlName="state" placeholder="Enter state">
+            <mat-error *ngIf="userForm.get('state')?.errors?.['required']">
+              State is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>City <span class="amharic">/ ከተማ</span></mat-label>
+            <input matInput formControlName="city" placeholder="Enter city">
+            <mat-error *ngIf="userForm.get('city')?.errors?.['required']">
+              City is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Church Information Section -->
+        <div class="form-section">
+          <h3>Church Information</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Church Name <span class="amharic">/ የቤተክርስትያን ስም</span></mat-label>
+            <input matInput formControlName="churchName" placeholder="Enter church name">
+            <mat-error *ngIf="userForm.get('churchName')?.errors?.['required']">
+              Church name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cohort <span class="amharic">/ ዙር</span></mat-label>
+            <mat-select formControlName="cohort">
+              <mat-option value="">Select cohort</mat-option>
+              <mat-option value="1st">1st Cohort / 1ኛ ዙር</mat-option>
+              <mat-option value="2nd">2nd Cohort / 2ኛ ዙር</mat-option>
+              <mat-option value="3rd">3rd Cohort / 3ኛ ዙር</mat-option>
+              <mat-option value="4th">4th Cohort / 4ኛ ዙር</mat-option>
+              <mat-option value="5th">5th Cohort / 5ኛ ዙር</mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.get('cohort')?.errors?.['required']">
+              Cohort is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-container">
+        <button mat-button type="button" color="warn" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>

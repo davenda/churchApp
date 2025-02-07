@@ -1,0 +1,56 @@
+.page-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+mat-card {
+  background: white;
+  border-radius: 8px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+mat-card-header {
+  padding-bottom: 16px;
+}
+
+::ng-deep .mat-mdc-card-header-text {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+  }
+
+  .button-container {
+    padding-top: 8px;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,122 @@
+<div class="page-container">
+  <!-- Meeting Scheduler Card -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Schedule Meeting</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()" class="form-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Meeting Topic</mat-label>
+          <input matInput formControlName="topic" placeholder="Enter meeting topic">
+          <mat-error *ngIf="meetingForm.get('topic')?.errors?.['required']">
+            Topic is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Start Time</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="startTime">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="meetingForm.get('startTime')?.errors?.['required']">
+            Start time is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Duration (minutes)</mat-label>
+          <input matInput type="number" formControlName="duration" min="15">
+          <mat-error *ngIf="meetingForm.get('duration')?.errors?.['required']">
+            Duration is required
+          </mat-error>
+          <mat-error *ngIf="meetingForm.get('duration')?.errors?.['min']">
+            Duration must be at least 15 minutes
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select Cohort</mat-label>
+          <mat-select formControlName="selectedCohort">
+            <mat-option *ngFor="let cohort of cohorts" [value]="cohort">
+              {{cohort}} Cohort
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="meetingForm.get('selectedCohort')?.errors?.['required']">
+            Cohort is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!meetingForm.valid">
+            <mat-icon>schedule</mat-icon>
+            Schedule Meeting
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Message Sender Card -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Send Message</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="form-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Message</mat-label>
+          <textarea matInput 
+                    formControlName="message" 
+                    placeholder="Enter your message"
+                    rows="4">
+          </textarea>
+          <mat-error *ngIf="messageForm.get('message')?.errors?.['required']">
+            Message is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Send To</mat-label>
+          <mat-select formControlName="recipientType">
+            <mat-option *ngFor="let type of recipientTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Cohort Selection -->
+        <mat-form-field appearance="outline" *ngIf="showCohortSelect()">
+          <mat-label>Select Cohort</mat-label>
+          <mat-select formControlName="selectedCohort">
+            <mat-option *ngFor="let cohort of cohorts" [value]="cohort">
+              {{cohort}} Cohort
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- User Selection -->
+        <mat-form-field appearance="outline" *ngIf="showUserSelect()">
+          <mat-label>Select User</mat-label>
+          <mat-select formControlName="selectedUser">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.firstName}} {{user.lastName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mat-raised-button 
+                  color="primary" 
+                  type="submit" 
+                  [disabled]="!messageForm.valid">
+            <mat-icon>send</mat-icon>
+            Send Message
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

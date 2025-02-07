@@ -1,0 +1,63 @@
+<div class="attendance-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Support Our Bible Study</mat-card-title>
+        <mat-card-subtitle>Your contribution helps us continue spreading the Word of God</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <div class="donation-grid">
+          <!-- Cash App -->
+          <mat-card class="donation-method">
+            <mat-card-header>
+              <mat-icon color="primary">attach_money</mat-icon>
+              <mat-card-title>Cash App</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Send your donation through Cash App</p>
+              <p class="payment-id">$beteyared</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-raised-button color="primary" href="https://cash.app/$beteyared" target="_blank">
+                Send with Cash App
+              </a>
+            </mat-card-actions>
+          </mat-card>
+  
+          <!-- Zelle -->
+          <mat-card class="donation-method">
+            <mat-card-header>
+              <mat-icon color="accent">mobile_friendly</mat-icon>
+              <mat-card-title>Zelle</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Send your donation through Zelle</p>
+              <p class="payment-id">beteyared&#64;gmail.com</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="accent" (click)="copyZelle()">
+                Copy Email
+              </button>
+            </mat-card-actions>
+          </mat-card>
+  
+          <!-- PayPal -->
+          <mat-card class="donation-method">
+            <mat-card-header>
+              <mat-icon color="primary">payment</mat-icon>
+              <mat-card-title>PayPal</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Send your donation through PayPal</p>
+              <p class="payment-id">beteyared&#64;gmail.com</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-raised-button color="primary" href="https://paypal.me/beteyared" target="_blank">
+                Send with PayPal
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

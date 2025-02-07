@@ -1,0 +1,56 @@
+<div class="thank-you-container">
+    <mat-card class="thank-you-card">
+      <mat-card-header>
+        <mat-card-title>Thank You for Registering!</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="greeting">Dear {{firstName}},</p>
+        <p>Thank you for registering with BeteYared Bible Study Group. We've sent a confirmation email to {{email}}.</p>
+        <p>You will receive information about upcoming Bible study sessions and Zoom meeting details via text message.</p>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <!-- Social Links Section -->
+        <div class="social-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a mat-raised-button color="primary" href="https://t.me/beteyared" target="_blank">
+              <mat-icon>telegram</mat-icon>
+              Telegram Channel
+            </a>
+            <a mat-raised-button color="accent" href="https://www.youtube.com/@BeteYared" target="_blank">
+              <mat-icon>play_circle</mat-icon>
+              YouTube Channel
+            </a>
+            <a mat-raised-button href="https://facebook.com/beteyared" target="_blank">
+              <mat-icon>facebook</mat-icon>
+              Facebook Page
+            </a>
+          </div>
+        </div>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <!-- Donation Section -->
+        <div class="donation-section">
+          <h3>Support Our Bible Study</h3>
+          <p>Your contribution helps us continue spreading the Word of God.</p>
+          <div class="donation-buttons">
+            <a mat-raised-button color="primary" href="https://cash.app/$beteyared" target="_blank">
+              <mat-icon>attach_money</mat-icon>
+              Cash App
+            </a>
+            <button mat-raised-button (click)="copyZelle()">
+              <mat-icon>mobile_friendly</mat-icon>
+              Zelle: beteyared&#64;gmail.com
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="goHome()">Return to Home</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

@@ -1,0 +1,101 @@
+  .container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  You can add global styles to this file, and also import other style files
+html, body { 
+    height: 100%; 
+    margin: 0; 
+    padding: 0;
+  }
+  
+  body { 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #f5f7fa;
+  }
+  
+  .page-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  mat-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+  
+  mat-card-header {
+    padding: 16px 16px 0;
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 8px;
+  }
+  
+  mat-card-content {
+    padding: 16px;
+  }
+  
+  .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 48px;
+  }
+  
+  .error-message {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  
+  .table-container {
+    margin-top: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mat-mdc-card {
+    margin-bottom: 24px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  @media (max-width: 600px) {
+    .page-container {
+      padding: 16px;
+    }
+    
+    .filters-grid,
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }

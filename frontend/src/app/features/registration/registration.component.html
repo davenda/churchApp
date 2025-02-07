@@ -1,0 +1,84 @@
+<!-- registration.component.html -->
+<div class="signup-container">
+    <div class="signup-card">
+      <div class="header">
+        <h1>Sign up</h1>
+        <p class="subtitle">Welcome to BeteYared Bible Study Group - Let's create account</p>
+      </div>
+  
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label>First Name <span class="amharic">/ ስም</span></label>
+          <input type="text" formControlName="firstName" placeholder="Enter your first name">
+          <div class="check-icon" *ngIf="registrationForm.get('firstName')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Last Name <span class="amharic">/ የአባት ስም</span></label>
+          <input type="text" formControlName="lastName" placeholder="Enter your last name">
+          <div class="check-icon" *ngIf="registrationForm.get('lastName')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Baptism Name <span class="amharic">/ የክርስትና ስም</span></label>
+          <input type="text" formControlName="baptismName" placeholder="Enter your baptism name">
+          <div class="check-icon" *ngIf="registrationForm.get('baptismName')?.valid">✓</div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-field">
+            <label>Country <span class="amharic">/ ሀገር</span></label>
+            <input type="text" formControlName="country" placeholder="Country">
+            <div class="check-icon" *ngIf="registrationForm.get('country')?.valid">✓</div>
+          </div>
+  
+          <div class="form-field">
+            <label>State <span class="amharic">/ ክፍለ ሀገር</span></label>
+            <input type="text" formControlName="state" placeholder="State">
+            <div class="check-icon" *ngIf="registrationForm.get('state')?.valid">✓</div>
+          </div>
+        </div>
+  
+        <div class="form-field">
+          <label>City <span class="amharic">/ ከተማ</span></label>
+          <input type="text" formControlName="city" placeholder="Enter your city">
+          <div class="check-icon" *ngIf="registrationForm.get('city')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Phone Number <span class="amharic">/ ስልክ ቁጥር</span></label>
+          <input type="tel" formControlName="phoneNumber" placeholder="Enter your phone number">
+          <div class="check-icon" *ngIf="registrationForm.get('phoneNumber')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Email <span class="amharic">/ ኢሜይል</span></label>
+          <input type="email" formControlName="email" placeholder="Enter your email">
+          <div class="check-icon" *ngIf="registrationForm.get('email')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Attending Church Name <span class="amharic">/ የሚሄዱበት የቤተክርስትያን ስም</span></label>
+          <input type="text" formControlName="churchName" placeholder="Enter your church name">
+          <div class="check-icon" *ngIf="registrationForm.get('churchName')?.valid">✓</div>
+        </div>
+        
+        <div class="form-field">
+          <label>Cohort <span class="amharic">/ ዙር</span></label>
+          <select formControlName="cohort">
+            <option value="">Select your cohort / ዙርዎን ይምረጡ</option>
+            <option value="1st">1st Cohort / 1ኛ ዙር</option>
+            <option value="2nd">2nd Cohort / 2ኛ ዙር</option>
+            <option value="3rd">3rd Cohort / 3ኛ ዙር</option>
+            <option value="4th">4th Cohort / 4ኛ ዙር</option>
+            <option value="5th">5th Cohort / 5ኛ ዙር</option>
+          </select>
+          <div class="check-icon" *ngIf="registrationForm.get('cohort')?.valid">✓</div>
+        </div>      
+        
+        <button type="submit" [disabled]="!registrationForm.valid" class="submit-button">
+          <span>Sign Up</span>
+        </button>
+      </form>
+    </div>
+  </div>

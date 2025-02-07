@@ -1,0 +1,51 @@
+.attendance-container {
+    padding: 24px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  .donation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  
+  .donation-method {
+    height: 100%;
+  }
+  
+  .donation-method mat-card-header {
+    margin-bottom: 16px;
+  }
+  
+  .donation-method mat-card-content {
+    flex-grow: 1;
+  }
+  
+  .payment-id {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin: 16px 0;
+  }
+  
+  mat-card-actions {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  button, a {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .attendance-container {
+      padding: 16px;
+    }
+  
+    .donation-grid {
+      grid-template-columns: 1fr;
+    }
+  }

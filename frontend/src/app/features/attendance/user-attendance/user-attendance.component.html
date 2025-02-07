@@ -1,0 +1,118 @@
+<div class="attendance-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Attendance Report</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="filters-grid">
+        <!-- First Row: Cohort Filter and Actions -->
+        <div class="filter-row">
+          <div class="filter-section">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Filter by Cohort</mat-label>
+              <mat-select [(value)]="selectedCohort" (selectionChange)="filterByCohort($event.value)">
+                <mat-option value="">All Cohorts</mat-option>
+                <mat-option *ngFor="let cohort of cohorts" [value]="cohort">
+                  {{cohort}} Cohort
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="action-buttons">
+            <button mat-raised-button 
+                    color="accent" 
+                    (click)="collectAttendance()" 
+                    [disabled]="isCollecting || !selectedCohort">
+              <mat-icon>sync</mat-icon>
+              {{ isCollecting ? 'Collecting...' : 'Collect Attendance' }}
+            </button>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="sendReminders()"
+                    [disabled]="!selectedCohort">
+              <mat-icon>message</mat-icon>
+              Send Meeting Reminders
+            </button>
+          </div>
+        </div>
+
+        <!-- Second Row: Date Range -->
+        <div class="date-section">
+          <form [formGroup]="dateRange" class="date-range-form">
+            <mat-form-field appearance="outline">
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="start">
+              <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="endPicker" formControlName="end">
+              <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+          </form>
+        </div>
+
+        <!-- Third Row: Search -->
+        <div class="search-section">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search Members</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Type to search...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-spinner">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+
+      <!-- Table -->
+      <div class="table-container mat-elevation-z8" *ngIf="!loading && !error">
+        <div class="table-scroll">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- Name Column (Fixed) -->
+            <ng-container matColumnDef="name" sticky>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+              <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+      
+            <!-- Dynamic Date Columns -->
+            <ng-container *ngFor="let date of displayedColumns.slice(1, -1)" [matColumnDef]="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{date}}</th>
+              <td mat-cell *matCellDef="let row" [ngClass]="{'present': row[date] === 'Present', 'absent': row[date] === 'Absent'}">
+                {{row[date]}}
+              </td>
+            </ng-container>
+      
+            <!-- Attendance Percentage Column (Sticky End) -->
+            <ng-container matColumnDef="attendancePercentage" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Attendance %</th>
+              <td mat-cell *matCellDef="let row" [ngClass]="{'high-attendance': row.attendancePercentage >= 75}">
+                {{row.attendancePercentage | number:'1.0-1'}}%
+              </td>
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      
+        <mat-paginator [pageSize]="10"
+                      [pageSizeOptions]="[10, 25, 50]"
+                      showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

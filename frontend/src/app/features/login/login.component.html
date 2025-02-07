@@ -1,0 +1,26 @@
+<div class="signup-container">
+    <div class="signup-card">
+      <div class="header">
+        <h1>Sign in</h1>
+        <p class="subtitle">Welcome to BeteYared Bible Study Group</p>
+      </div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label>Email <span class="amharic">/ ኢሜይል</span></label>
+          <input type="email" formControlName="email" placeholder="Enter your email">
+          <div class="check-icon" *ngIf="loginForm.get('email')?.valid">✓</div>
+        </div>
+  
+        <div class="form-field">
+          <label>Password <span class="amharic">/ የይለፍ ቃል</span></label>
+          <input type="password" formControlName="password" placeholder="Enter your password">
+          <div class="check-icon" *ngIf="loginForm.get('password')?.valid">✓</div>
+        </div>
+  
+        <button type="submit" [disabled]="!loginForm.valid || loading" class="submit-button">
+          <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
+        </button>
+      </form>
+    </div>
+  </div>
