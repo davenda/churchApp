@@ -19,7 +19,7 @@ export interface Participant {
   providedIn: 'root'
 })
 export class ZoomService {
-  private apiUrl = `${environment.apiUrl}/api/zoom`;
+  private apiUrl = `${environment.apiUrl}/zoom`;
 
   constructor(private http: HttpClient) {}
 

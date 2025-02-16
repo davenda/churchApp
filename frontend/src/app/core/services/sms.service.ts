@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environments';
   providedIn: 'root'
 })
 export class SmsService {
-  private apiUrl = `${environment.apiUrl}/api/sms`;
+  private apiUrl = `${environment.apiUrl}/sms`;
 
   constructor(private http: HttpClient) {}
 
