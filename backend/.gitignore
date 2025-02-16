@@ -9,6 +9,8 @@ target/maven-archiver
 target/test-ids
 target/test-classes
 target/surefire-reports
+data/
+logs/
 
 ### STS ###
 .apt_generated
