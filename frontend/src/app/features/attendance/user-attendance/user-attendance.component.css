@@ -72,8 +72,10 @@ mat-card-title {
 
 .table-scroll {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   margin-right: 0;
   margin-left: 0;
+  width: 100%;
 }
 
 table {
@@ -87,23 +89,34 @@ table {
 
 /* Fixed Columns Styling */
 .mat-column-name {
+  position: sticky;
+  left: 0;
+  min-width: 180px;
+  background-color: white;
+  z-index: 2;
   padding-left: 16px;
   border-right: 1px solid #e0e0e0;
-  min-width: 200px;  /* Adjust based on your needs */
-  background-color: white;
 }
 
 .mat-column-attendancePercentage {
-  min-width: 120px;  /* Adjust based on your needs */
-  border-left: 1px solid #e0e0e0;
+  position: sticky;
+  right: 0;
+  min-width: 70px;
   background-color: white;
+  z-index: 2;
+  border-left: 1px solid #e0e0e0;
 }
 
 /* Date Columns */
 th.mat-header-cell:not(.mat-column-name):not(.mat-column-attendancePercentage),
 td.mat-cell:not(.mat-column-name):not(.mat-column-attendancePercentage) {
-  min-width: 100px;  /* Adjust based on your needs */
-  padding: 0 16px;
+  min-width: 60px;  /* Reduced from 120px */
+  max-width: 60px;  /* Added to ensure fixed width */
+  padding: 0 8px;   /* Reduced padding */
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Make sure sticky columns stay on top */
@@ -239,12 +252,102 @@ tr.mat-row:hover {
 }
 
 @media (max-width: 768px) {
-  .button-group {
-    flex-direction: column;
-    width: 100%;
+  .table-container {
+    margin: 0 -16px; /* Negative margin to allow full-width scrolling */
+    width: calc(100% + 32px);
   }
 
-  .button-group button {
+  .mat-header-cell, .mat-cell {
+    font-size: 14px; /* Slightly smaller font on mobile */
+  }
+
+  /* Add a fade effect to indicate scrolling */
+  .table-scroll::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.9));
+    pointer-events: none;
+  }
+
+  .date-cell {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    padding: 0 4px !important;
+    text-align: center !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .status-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     width: 100%;
   }
 }
+
+.status-icon {
+  font-size: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+td.mat-cell .status-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.present .status-icon {
+  color: #059669;
+  font-weight: bold;
+}
+
+.absent .status-icon {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+th.date-cell {
+  font-size: 14px !important;
+  line-height: 1.2;
+  font-weight: 500;
+  justify-content: center !important; /* Added for mat-header-cell */
+}
+
+th.date-cell .mat-sort-header-container {
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Target the actual date text */
+th.date-cell span {
+  text-align: center !important;
+}
+
+.date-cell {
+  min-width: 60px !important;
+  padding: 0 4px !important;
+  text-align: center !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Container for status icon to ensure centering */
+.status-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+  
