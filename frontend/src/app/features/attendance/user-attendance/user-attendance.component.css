@@ -101,10 +101,12 @@ table {
 .mat-column-attendancePercentage {
   position: sticky;
   right: 0;
-  min-width: 70px;
+  min-width: 50px;
   background-color: white;
   z-index: 2;
   border-left: 1px solid #e0e0e0;
+  padding: 4px;
+  text-align: center;
 }
 
 /* Date Columns */

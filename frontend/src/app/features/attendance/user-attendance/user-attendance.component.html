@@ -99,7 +99,7 @@
       
             <!-- Attendance Percentage Column (Sticky End) -->
             <ng-container matColumnDef="attendancePercentage" stickyEnd>
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>ATT%</th>
+              <th mat-header-cell *matHeaderCellDef >ATT%</th>
               <td mat-cell *matCellDef="let row" [ngClass]="{'high-attendance': row.attendancePercentage >= 75}">
                 {{row.attendancePercentage | number:'1.0-1'}}%
               </td>
