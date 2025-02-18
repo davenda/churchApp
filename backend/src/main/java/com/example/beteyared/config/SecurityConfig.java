@@ -19,9 +19,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configure(http))
-                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))  // For H2 console
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().permitAll()  // Changed from authenticated() to permitAll()
                 );
 

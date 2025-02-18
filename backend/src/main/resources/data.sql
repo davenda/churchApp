@@ -1,7 +1,7 @@
 -- Insert sample users
 INSERT INTO users (first_name, last_name, baptism_name, state, country, city, phone_number, email, church_name, is_active, role, cohort, created_at, updated_at) VALUES
 -- 1st Cohort Members
-('Abebe', 'Kebede', 'Gabriel', 'California', 'USA', 'San Jose', '+14081234567', 'abebe.k@example.com', 'St. Mary Church', true, 'USER', '1st', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Abebe', 'Tafese', 'Gabriel', 'California', 'USA', 'San Jose', '+14081234567', 'abebe.k@example.com', 'St. Mary Church', true, 'USER', '1st', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Tigist', 'Haile', 'Mary', 'Texas', 'USA', 'Dallas', '+12141234567', 'tigist.h@example.com', 'Holy Trinity Church', true, 'USER', '1st', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Dawit', 'Gizaw', 'Daniel', 'Virginia', 'USA', 'Alexandria', '+17031234567', 'dawit.g@example.com', 'Debre Selam Medhanealem', true, 'ADMIN', '1st', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Bethlehem', 'Alemu', 'Elizabeth', 'Maryland', 'USA', 'Silver Spring', '+13011234567', 'beth.a@example.com', 'St. Michael Church', true, 'USER', '1st', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
