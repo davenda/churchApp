@@ -74,7 +74,20 @@
             <option value="5th">5th Cohort / 5ኛ ዙር</option>
           </select>
           <div class="check-icon" *ngIf="registrationForm.get('cohort')?.valid">✓</div>
-        </div>      
+        </div>   
+        
+        <div class="form-field">
+          <label class="checkbox-container">
+            <input type="checkbox" formControlName="smsConsent">
+            <span class="checkbox-text">
+              By checking this box, you agree to receive SMS notifications from BeteYared Bible Study.
+            <span class="amharic">/ ይህን ሳጥን በመምረጥ፣ ከቤተያሬድ የቅዱስ መጽሐፍ ጥናት የኤስኤምኤስ ማሳወቂያዎችን ለማግኘት ተስማምተዋል።</span>
+            </span>
+          </label>
+          <div class="error-message" *ngIf="registrationForm.get('smsConsent')?.errors?.['required'] && registrationForm.get('smsConsent')?.touched">
+            You must agree to receive SMS notifications
+          </div>
+        </div>
         
         <button type="submit" [disabled]="!registrationForm.valid" class="submit-button">
           <span>Sign Up</span>

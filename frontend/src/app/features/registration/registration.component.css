@@ -98,3 +98,30 @@
       padding: 1.5rem;
     }
   }
+
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 1.5rem 0;
+    cursor: pointer;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .checkbox-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #2c3e50;
+  }
+  
+  .error-message {
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }

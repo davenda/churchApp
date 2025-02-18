@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../core/services/user.service';
 import { Router } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-registration',
@@ -20,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
   ],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
@@ -48,7 +49,8 @@ export class RegistrationComponent {
       ]],
       email: ['', [Validators.required, Validators.email]],
       churchName: ['', [Validators.required]],
-      cohort: ['', [Validators.required]] 
+      cohort: ['', [Validators.required]] ,
+      smsConsent: [false, [Validators.requiredTrue]], // Add this line
     });
   }
 
