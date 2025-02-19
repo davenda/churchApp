@@ -5,6 +5,7 @@ import { ScheduleMeetingComponent } from './features/zoom/schedule-meeting/sched
 import { AuthGuard } from './core/services/auth.guard';
 import { LoginComponent } from './features/login/login.component';
 import { DonationComponent } from './features/donation/donation.component';
+import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
   {
@@ -33,9 +34,14 @@ export const routes: Routes = [
     path: 'schedule-meeting',
     component: ScheduleMeetingComponent,
     canActivate: [AuthGuard]
+  },  
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
   },
   {
     path: 'donate',
     component: DonationComponent
   }
+  
 ];

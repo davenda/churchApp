@@ -34,8 +34,8 @@ export class LoginComponent {
     private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
-      email: ['admin@beteyared.com', [Validators.required, Validators.email]],
-      password: ['admin123', Validators.required]
+      email: [ "", [Validators.required, Validators.email]],
+      password: ["", Validators.required]
     });
   }
 

@@ -21,8 +21,8 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatCardModule,
-  ],
+    MatCardModule
+    ],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
