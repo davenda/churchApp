@@ -22,11 +22,14 @@ public class CustomCorsFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
-        String allowedOrigin = "dev".equals(activeProfile)
-                ? "http://localhost:4200"
-                : "https://www.beteyared.com";
+        String origin = request.getHeader("Origin");
 
-        response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+
+//        String allowedOrigin = "dev".equals(activeProfile)
+//                ? "http://localhost:4200"
+//                : "https://www.beteyared.com";
+
+        response.setHeader("Access-Control-Allow-Origin", origin);
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, content-type");
