@@ -4,6 +4,7 @@ import com.example.beteyared.config.TwilioConfig;
 import com.example.beteyared.model.User;
 import com.example.beteyared.service.UserService;
 import com.twilio.Twilio;
+import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,12 @@ public class SMSService {
     public SMSService(TwilioConfig twilioConfig, UserService userService) {
         this.twilioConfig = twilioConfig;
         this.userService = userService;
-        Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
+        try {
+            Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
+            log.info("Twilio initialized successfully");
+        } catch (Exception e) {
+            log.error("Failed to initialize Twilio: {}", e.getMessage());
+        }
     }
 
     public void sendMeetingReminder(String cohort, String meetingId, String meetingLink) {
@@ -76,7 +82,12 @@ public class SMSService {
 
     private void sendSingleMessage(User user, String messageContent) {
         try {
+            // Re-initialize Twilio for each message to ensure fresh credentials
+            Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
+
             String formattedNumber = formatPhoneNumber(user.getPhoneNumber());
+            log.debug("Attempting to send message to {} using phone number {}",
+                    formattedNumber, twilioConfig.getPhoneNumber());
 
             Message message = Message.creator(
                     new com.twilio.type.PhoneNumber(formattedNumber),
@@ -84,10 +95,14 @@ public class SMSService {
                     messageContent
             ).create();
 
-            log.info("Sent message to {}: {}", formattedNumber, message.getSid());
-        } catch (Exception e) {
-            log.error("Failed to send message to {}: {}", user.getPhoneNumber(), e.getMessage());
+            log.info("Message sent successfully. SID: {}", message.getSid());
+        } catch (ApiException e) {
+            log.error("Twilio API Error - Status: {}, Message: {}, Code: {}",
+                    e.getStatusCode(), e.getMessage(), e.getCode());
             throw e;
+        } catch (Exception e) {
+            log.error("Failed to send message: {}", e.getMessage());
+            throw new RuntimeException("Failed to send SMS: " + e.getMessage());
         }
     }
 

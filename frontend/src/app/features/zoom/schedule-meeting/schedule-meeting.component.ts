@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,13 +44,15 @@ export class ScheduleMeetingComponent implements OnInit {
   error: string | null = null;
   cohorts: string[] = [];
   recipientTypes = ['All Users', 'Cohort', 'Single User'];  
+  messageSent = false;
 
   constructor(
     private fb: FormBuilder,
     private zoomService: ZoomService,
     private userService: UserService,
     private smsService: SmsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef  // Add this
   ) {
     this.meetingForm = this.fb.group({
       topic: ['', Validators.required],
@@ -153,7 +155,41 @@ export class ScheduleMeetingComponent implements OnInit {
             horizontalPosition: 'end',
             verticalPosition: 'top'
           });
-          this.messageForm.reset();
+          console.log(this.messageForm.valid);
+  
+          // Keep current values
+          const currentValues = {
+            recipientType: this.messageForm.get('recipientType')?.value,
+            selectedUser: this.messageForm.get('selectedUser')?.value,
+            selectedCohort: this.messageForm.get('selectedCohort')?.value
+          };
+  
+          // Create new form with same structure
+          this.messageForm = this.fb.group({
+            message: ['', Validators.required],
+            recipientType: [currentValues.recipientType, Validators.required],
+            selectedCohort: [currentValues.selectedCohort],
+            selectedUser: [currentValues.selectedUser],
+          });
+          console.log(this.messageForm.valid);
+
+
+        // Reset the form to its initial state
+        // this.messageForm.reset({
+        //   message: '',
+        //   recipientType: '',
+        //   selectedCohort: '',
+        //   selectedUser: ''
+        // });
+          
+          Object.keys(this.messageForm.controls).forEach(key => {
+            const control = this.messageForm.get(key);
+            control?.markAsUntouched();
+            control?.markAsPristine();
+            control?.setErrors(null);
+          });
+          console.log(this.messageForm.valid);
+
         },
         error: (error) => {
           console.error('Error sending message:', error);
@@ -165,6 +201,12 @@ export class ScheduleMeetingComponent implements OnInit {
           });
         }
       });
+    } else {
+      // Mark fields as touched to trigger validation display
+      // Object.keys(this.messageForm.controls).forEach(key => {
+      //   const control = this.messageForm.get(key);
+      //   control?.markAsTouched();
+      // });
     }
   }
 
@@ -175,5 +217,18 @@ export class ScheduleMeetingComponent implements OnInit {
 
   showUserSelect(): boolean {
     return this.messageForm.get('recipientType')?.value === 'Single User';
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      } else {
+        control.markAsTouched();
+        if (control.errors) {
+          control.setErrors(control.errors);
+        }
+      }
+    });
   }
 }

@@ -1,3 +1,8 @@
+-- Delete existing users
+DELETE FROM attendance;
+DELETE FROM users;
+DELETE FROM admins;
+
 -- Insert sample users
 INSERT INTO users (first_name, last_name, baptism_name, state, country, city, phone_number, email, church_name, is_active, role, cohort, created_at, updated_at) VALUES
 -- 1st Cohort Members

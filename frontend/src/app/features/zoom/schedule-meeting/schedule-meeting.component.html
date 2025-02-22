@@ -73,10 +73,10 @@
                     placeholder="Enter your message"
                     rows="4">
           </textarea>
-          <mat-error *ngIf="messageForm.get('message')?.errors?.['required']">
+          <mat-error *ngIf="messageForm.get('message')?.hasError('required') && messageForm.get('message')?.touched">
             Message is required
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> 
 
         <mat-form-field appearance="outline">
           <mat-label>Send To</mat-label>

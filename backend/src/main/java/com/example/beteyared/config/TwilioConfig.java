@@ -1,16 +1,28 @@
 package com.example.beteyared.config;
 
+import com.twilio.Twilio;
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
 @Configuration
 @Data
-@ConfigurationProperties(prefix = "twilio")
 public class TwilioConfig {
+    @Value("${twilio.account-sid}")
     private String accountSid;
+
+    @Value("${twilio.auth-token}")
     private String authToken;
+
+    @Value("${twilio.phone-number}")
     private String phoneNumber;
 
-    // Getters and setters
+    @PostConstruct
+    public void initTwilio() {
+        log.info("Initializing Twilio with account: {}", accountSid);
+        Twilio.init(accountSid, authToken);
+    }
 }
